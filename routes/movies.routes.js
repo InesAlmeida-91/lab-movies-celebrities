@@ -60,13 +60,13 @@ router.get('/movies/:id/edit', (req, res, next) => {
     .catch(err => console.log(err));
 });
 
-router.post('/movies/:id', (req, res, next) => {
+router.post('/movies/:id/edit', (req, res, next) => {
     const { id } = req.params;
     const {title, genre, plot, cast} = req.body
     Movie.findByIdAndUpdate(id, {title, genre, plot, cast}, {new: true})
         .then(updatedMovie => {
             console.log('updatedMovie', updatedMovie)
-            res.redirect(`/movies/${_id}`)
+            res.redirect(`/movies/${updatedMovie._id}`)
         })
         .catch(err => console.log(err));
 })
